@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "论文详情",
+  "usingComponents": {
+    "status-tag": "../../components/status-tag/status-tag",
+    "timeline": "../../components/timeline/timeline"
+  }
+}

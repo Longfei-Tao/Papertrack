@@ -1,0 +1,16 @@
+<view class="welcome">
+  <view class="hero">
+    <view class="mark">
+      <view class="sheet"></view>
+      <view class="dot"></view>
+    </view>
+    <view class="brand">PaperTrack</view>
+    <view class="slogan">让课题组的论文投稿进度更加清晰</view>
+  </view>
+
+  <view class="actions">
+    <button class="pt-btn pt-btn-primary pt-btn-block" bindtap="onCreateTeam">创建课题组</button>
+    <button class="pt-btn pt-btn-ghost pt-btn-block join" bindtap="onJoinTeam">加入课题组</button>
+    <view class="hint">以课题组为单位，协作管理科研论文投稿</view>
+  </view>
+</view>

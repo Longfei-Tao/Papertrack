@@ -1,0 +1,124 @@
+.paper-card {
+  position: relative;
+  display: flex;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(27, 34, 51, 0.05);
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+.paper-card.pressed {
+  opacity: 0.75;
+  transform: scale(0.99);
+}
+.rail {
+  width: 8rpx;
+  flex-shrink: 0;
+  border-radius: 0 4rpx 4rpx 0;
+}
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 24rpx 24rpx 20rpx;
+}
+.title-row {
+  display: flex;
+  align-items: flex-start;
+}
+.title {
+  flex: 1;
+  min-width: 0;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1B2233;
+  line-height: 1.4;
+  margin-right: 12rpx;
+}
+.journal {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: #667080;
+}
+.chips {
+  margin-top: 12rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.chip {
+  font-size: 22rpx;
+  color: #4F6D95;
+  background: #EDF2FA;
+  border-radius: 6rpx;
+  padding: 4rpx 12rpx;
+  margin-right: 12rpx;
+  margin-bottom: 8rpx;
+}
+.meta {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #98A1B0;
+  display: flex;
+}
+.meta-label {
+  flex-shrink: 0;
+  width: 116rpx;
+  color: #98A1B0;
+}
+.meta-value {
+  flex: 1;
+  min-width: 0;
+  color: #667080;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.foot {
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #F0F2F5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.status-raw {
+  flex: 1;
+  min-width: 0;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+}
+.status-raw-label {
+  color: #98A1B0;
+  margin-right: 8rpx;
+  flex-shrink: 0;
+}
+.status-raw-value {
+  color: #1B2233;
+  font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.foot-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 12rpx;
+}
+.deadline {
+  font-size: 22rpx;
+  color: #C08A3E;
+  background: #FBF4E8;
+  border-radius: 6rpx;
+  padding: 4rpx 12rpx;
+  margin-right: 12rpx;
+}
+.deadline.urgent {
+  color: #B5584E;
+  background: #FBF0EF;
+}
+.time {
+  font-size: 24rpx;
+  color: #98A1B0;
+  white-space: nowrap;
+}

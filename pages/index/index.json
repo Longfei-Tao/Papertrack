@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "论文",
+  "usingComponents": {
+    "paper-card": "../../components/paper-card/paper-card",
+    "stat-card": "../../components/stat-card/stat-card",
+    "empty-state": "../../components/empty-state/empty-state",
+    "member-avatar": "../../components/member-avatar/member-avatar"
+  }
+}

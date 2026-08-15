@@ -1,0 +1,4 @@
+<view class="stat-card {{active ? 'active' : ''}}" hover-class="pressed">
+  <view class="num">{{value}}</view>
+  <view class="label">{{label}}</view>
+</view>

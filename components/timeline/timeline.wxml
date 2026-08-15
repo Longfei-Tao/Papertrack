@@ -1,0 +1,16 @@
+<view class="timeline">
+  <view wx:for="{{list}}" wx:key="id" class="item">
+    <view class="rail">
+      <view class="node {{index === list.length - 1 ? 'current' : ''}}" style="background: {{item.statusColor}};"></view>
+      <view wx:if="{{index !== list.length - 1}}" class="line"></view>
+    </view>
+    <view class="body">
+      <view class="date">{{item.dateOnlyText}}</view>
+      <view class="status-row">
+        <text class="status">{{item.status}}</text>
+        <view class="tag" style="background: {{item.bg}}; color: {{item.statusColor}};">{{item.statusLabel}}</view>
+      </view>
+      <view wx:if="{{item.operatorName}}" class="op">由 {{item.operatorName}} 更新</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,130 @@
+<view class="form">
+  <!-- 基本信息 -->
+  <view class="section">
+    <view class="section-title">基本信息</view>
+    <view class="block">
+      <view class="field-label required">论文标题</view>
+      <input class="text-input" value="{{title}}" placeholder="请输入论文标题" placeholder-class="ph" data-field="title" bindinput="onInput" maxlength="200" />
+    </view>
+    <view class="block no-border">
+      <view class="field-label required">投稿期刊</view>
+      <input class="text-input" value="{{journal}}" placeholder="请输入投稿期刊" placeholder-class="ph" data-field="journal" bindinput="onInput" maxlength="100" />
+    </view>
+  </view>
+
+  <!-- 期刊信息 -->
+  <view class="section">
+    <view class="section-title">期刊信息</view>
+    <picker mode="selector" range="{{articleTypes}}" value="{{articleTypeIndex}}" data-field="articleTypeIndex" bindchange="onPickerChange">
+      <view class="row">
+        <view class="field-label">论文类型</view>
+        <view class="field-value">{{articleTypes[articleTypeIndex] || '请选择'}}</view>
+        <view class="arrow"></view>
+      </view>
+    </picker>
+    <picker mode="selector" range="{{casOptions}}" value="{{casIndex}}" data-field="casIndex" bindchange="onPickerChange">
+      <view class="row">
+        <view class="field-label">中科院分区</view>
+        <view class="field-value">{{casOptions[casIndex]}}</view>
+        <view class="arrow"></view>
+      </view>
+    </picker>
+    <picker mode="selector" range="{{jcrOptions}}" value="{{jcrIndex}}" data-field="jcrIndex" bindchange="onPickerChange">
+      <view class="row no-border">
+        <view class="field-label">JCR 分区</view>
+        <view class="field-value">{{jcrOptions[jcrIndex]}}</view>
+        <view class="arrow"></view>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 作者信息 -->
+  <view class="section">
+    <view class="section-title">作者信息</view>
+    <view class="block">
+      <view class="field-label">第一作者</view>
+      <view class="chips">
+        <view wx:for="{{firstAuthors}}" wx:key="*this" class="chip-item">
+          <text>{{item}}</text>
+          <text class="chip-x" data-field="firstAuthors" data-index="{{index}}" catchtap="removeChip">×</text>
+        </view>
+        <input class="chip-input" value="{{firstAuthorInput}}" placeholder="{{firstAuthors.length ? '' : '输入姓名后回车添加'}}" placeholder-class="ph" bindinput="onFirstAuthorInput" bindconfirm="addFirstAuthor" confirm-type="done" />
+      </view>
+    </view>
+    <view class="block">
+      <view class="field-label">通讯作者</view>
+      <view class="chips">
+        <view wx:for="{{correspondingAuthors}}" wx:key="*this" class="chip-item">
+          <text>{{item}}</text>
+          <text class="chip-x" data-field="correspondingAuthors" data-index="{{index}}" catchtap="removeChip">×</text>
+        </view>
+        <input class="chip-input" value="{{correspondingAuthorInput}}" placeholder="{{correspondingAuthors.length ? '' : '输入姓名后回车添加'}}" placeholder-class="ph" bindinput="onCorrespondingAuthorInput" bindconfirm="addCorrespondingAuthor" confirm-type="done" />
+      </view>
+    </view>
+    <view class="block no-border">
+      <view class="field-label">负责人</view>
+      <view class="member-chips">
+        <view wx:for="{{memberOptions}}" wx:key="userId" class="member-chip {{item.selected ? 'selected' : ''}}" data-id="{{item.userId}}" bindtap="toggleOwner">{{item.nickname}}</view>
+        <view wx:if="{{!memberOptions.length}}" class="empty-hint">暂无可选成员</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 投稿信息 -->
+  <view class="section">
+    <view class="section-title">投稿信息</view>
+    <picker mode="date" value="{{submissionDate}}" data-field="submissionDate" bindchange="onDateChange">
+      <view class="row">
+        <view class="field-label">投稿日期</view>
+        <view class="field-value {{submissionDate ? '' : 'placeholder'}}">{{submissionDate || '请选择'}}</view>
+        <view class="arrow"></view>
+      </view>
+    </picker>
+    <picker mode="selector" range="{{categoryOptions}}" range-key="label" value="{{categoryIndex}}" data-field="categoryIndex" bindchange="onPickerChange">
+      <view class="row">
+        <view class="field-label">状态分类</view>
+        <view class="field-value">{{categoryOptions[categoryIndex].label}}</view>
+        <view class="arrow"></view>
+      </view>
+    </picker>
+    <view class="block">
+      <view class="field-label">当前投稿状态</view>
+      <input class="text-input" value="{{currentStatus}}" placeholder="如 With Editor、Under Review" placeholder-class="ph" data-field="currentStatus" bindinput="onInput" maxlength="60" />
+      <view wx:if="{{suggestions.length}}" class="suggestions">
+        <view wx:for="{{suggestions}}" wx:key="*this" class="suggest {{currentStatus === item ? 'active' : ''}}" data-status="{{item}}" bindtap="pickSuggestion">{{item}}</view>
+      </view>
+    </view>
+    <picker mode="date" value="{{revisionDeadline}}" data-field="revisionDeadline" bindchange="onDateChange">
+      <view class="row">
+        <view class="field-label">返修截止日期</view>
+        <view class="field-value {{revisionDeadline ? '' : 'placeholder'}}">{{revisionDeadline || '请选择'}}</view>
+        <view class="arrow"></view>
+      </view>
+    </picker>
+    <view wx:if="{{isRevision}}" class="revision-hint">当前为返修状态，建议填写返修截止日期</view>
+    <view class="row">
+      <view class="field-label">稿件编号</view>
+      <input class="row-input" value="{{manuscriptId}}" placeholder="Manuscript ID（可选）" placeholder-class="ph" data-field="manuscriptId" bindinput="onInput" />
+    </view>
+    <view class="row">
+      <view class="field-label">DOI</view>
+      <input class="row-input" value="{{doi}}" placeholder="可选" placeholder-class="ph" data-field="doi" bindinput="onInput" />
+    </view>
+    <picker mode="selector" range="{{visibilities}}" range-key="label" value="{{visibilityIndex}}" data-field="visibilityIndex" bindchange="onPickerChange">
+      <view class="row no-border">
+        <view class="field-label">可见范围</view>
+        <view class="field-value">{{visibilities[visibilityIndex].label}}</view>
+        <view class="arrow"></view>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 备注 -->
+  <view class="section">
+    <view class="section-title">备注</view>
+    <textarea class="textarea" value="{{note}}" placeholder="补充说明（可选）" placeholder-class="ph" data-field="note" bindinput="onInput" maxlength="500" auto-height />
+  </view>
+
+  <button class="pt-btn pt-btn-primary pt-btn-block submit" bindtap="onSubmit">{{submitText}}</button>
+  <view class="safe"></view>
+</view>

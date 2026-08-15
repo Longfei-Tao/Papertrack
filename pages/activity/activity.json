@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "最近动态",
+  "usingComponents": {
+    "member-avatar": "../../components/member-avatar/member-avatar",
+    "empty-state": "../../components/empty-state/empty-state"
+  }
+}

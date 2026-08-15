@@ -1,0 +1,15 @@
+<view class="empty">
+  <view class="illus">
+    <view class="sheet">
+      <view class="line l1"></view>
+      <view class="line l2"></view>
+      <view class="line l3"></view>
+    </view>
+    <view class="node n1"></view>
+    <view class="node n2"></view>
+    <view class="node n3"></view>
+  </view>
+  <view class="title">{{title}}</view>
+  <view wx:if="{{desc}}" class="desc">{{desc}}</view>
+  <button wx:if="{{actionText}}" class="pt-btn pt-btn-primary pt-btn-mini action" bindtap="onAction">{{actionText}}</button>
+</view>

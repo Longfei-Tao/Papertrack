@@ -1,0 +1,92 @@
+<view class="page">
+  <!-- 顶部：团队信息 -->
+  <view class="header">
+    <view class="team-info" bindtap="onSwitchTeam">
+      <view class="team-name-row">
+        <text class="team-name">{{teamName}}</text>
+        <view wx:if="{{hasMultipleTeams}}" class="switch-hint">切换 ▾</view>
+      </view>
+      <view class="team-meta">{{memberCount}} 名成员</view>
+    </view>
+    <view class="role-badge">{{roleLabel}}</view>
+  </view>
+
+  <!-- 成员：我的/全部切换 -->
+  <view wx:if="{{isMember}}" class="seg">
+    <view class="seg-item {{scope === 'mine' ? 'active' : ''}}" hover-class="pt-hover" data-scope="mine" bindtap="onScopeChange">我的论文</view>
+    <view class="seg-item {{scope === 'all' ? 'active' : ''}}" hover-class="pt-hover" data-scope="all" bindtap="onScopeChange">全部论文</view>
+  </view>
+
+  <!-- 概览统计 -->
+  <view class="stat-grid">
+    <view class="stat-wrap" data-key="" bindtap="onStatTap"><stat-card value="{{stats.total}}" label="全部" active="{{statusFilter === ''}}" /></view>
+    <view class="stat-wrap" data-key="review" bindtap="onStatTap"><stat-card value="{{stats.review}}" label="审稿中" active="{{statusFilter === 'review'}}" /></view>
+    <view class="stat-wrap" data-key="revision" bindtap="onStatTap"><stat-card value="{{stats.revision}}" label="返修中" active="{{statusFilter === 'revision'}}" /></view>
+    <view class="stat-wrap" data-key="accepted" bindtap="onStatTap"><stat-card value="{{stats.accepted}}" label="已接收" active="{{statusFilter === 'accepted'}}" /></view>
+  </view>
+
+  <!-- 管理员：最近动态 -->
+  <view wx:if="{{isAdmin}}" class="activity-card">
+    <view class="activity-head">
+      <text class="activity-title">最近动态</text>
+      <text class="activity-more" bindtap="onViewAllActivity">查看全部</text>
+    </view>
+    <block wx:if="{{activities.length}}">
+      <view wx:for="{{activities}}" wx:key="id" class="activity-item">
+        <member-avatar name="{{item.userName}}" size="{{56}}" />
+        <view class="activity-body">
+          <view class="activity-line1">
+            <text class="activity-user">{{item.userName}}</text>
+            <text class="activity-action">{{item.actionText}}</text>
+          </view>
+          <view class="activity-paper pt-ellipsis">{{item.paperTitle}}</view>
+          <view class="activity-time">{{item.timeText}}</view>
+        </view>
+      </view>
+    </block>
+    <view wx:else class="activity-empty">暂无动态</view>
+  </view>
+
+  <!-- 搜索 -->
+  <view class="search-box">
+    <view class="search-icon"></view>
+    <input class="search-input" value="{{query}}" placeholder="搜索论文、期刊或作者" placeholder-class="ph" bindinput="onSearchInput" confirm-type="search" />
+    <view wx:if="{{query}}" class="search-clear" bindtap="onClearSearch">×</view>
+  </view>
+
+  <!-- 状态筛选 -->
+  <scroll-view scroll-x class="filter-scroll" enhanced show-scrollbar="{{false}}">
+    <view class="filter-row">
+      <view class="pt-chip {{statusFilter === '' ? 'active' : ''}}" hover-class="pt-hover" data-key="" bindtap="onStatusFilter">全部</view>
+      <view wx:for="{{statusOptions}}" wx:key="key" class="pt-chip {{statusFilter === item.key ? 'active' : ''}}" hover-class="pt-hover" data-key="{{item.key}}" bindtap="onStatusFilter">{{item.label}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 成员筛选（管理员） -->
+  <scroll-view wx:if="{{isAdmin}}" scroll-x class="filter-scroll" enhanced show-scrollbar="{{false}}">
+    <view class="filter-row">
+      <view class="pt-chip {{ownerId === '' ? 'active' : ''}}" hover-class="pt-hover" data-id="" bindtap="onOwnerFilter">全部成员</view>
+      <view wx:for="{{memberOptions}}" wx:key="userId" class="pt-chip {{ownerId === item.userId ? 'active' : ''}}" hover-class="pt-hover" data-id="{{item.userId}}" bindtap="onOwnerFilter">{{item.nickname}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 论文列表 -->
+  <view class="list">
+    <view wx:if="{{papers.length}}" class="list-head">
+      <text class="list-title">{{isMember && scope === 'mine' ? '我的论文' : '全部论文'}}</text>
+      <text class="list-count">共 {{papers.length}} 篇</text>
+    </view>
+    <paper-card wx:for="{{papers}}" wx:key="id" paper="{{item}}" bind:tap="onPaperTap" />
+  </view>
+
+  <!-- 空状态 -->
+  <empty-state wx:if="{{!papers.length && stats.total > 0}}" title="没有找到相关论文" desc="试试调整搜索或筛选条件。" />
+  <empty-state wx:elif="{{!papers.length}}" title="还没有论文" desc="添加第一篇论文，开始记录投稿进度。" actionText="添加论文" bind:action="onAddPaper" />
+
+  <!-- 添加论文 -->
+  <view wx:if="{{!isViewer}}" class="fab" bindtap="onAddPaper">
+    <text class="fab-plus">＋</text>
+    <text>添加论文</text>
+  </view>
+  <view class="fab-space"></view>
+</view>

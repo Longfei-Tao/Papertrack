@@ -1,0 +1,40 @@
+.page {
+  padding: 24rpx;
+}
+.card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(27, 34, 51, 0.05);
+  overflow: hidden;
+  margin-bottom: 32rpx;
+}
+.block {
+  padding: 26rpx 28rpx;
+  border-bottom: 1rpx solid #F0F2F5;
+}
+.block.no-border { border-bottom: none; }
+.label {
+  font-size: 26rpx;
+  color: #98A1B0;
+  margin-bottom: 8rpx;
+}
+.label.required::after {
+  content: ' *';
+  color: #B5584E;
+}
+.input {
+  font-size: 30rpx;
+  color: #1B2233;
+  min-height: 48rpx;
+}
+.value {
+  font-size: 28rpx;
+  color: #667080;
+}
+.ph { color: #98A1B0; }
+.hint {
+  margin-top: 24rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #98A1B0;
+}

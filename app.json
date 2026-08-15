@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/index/index",
+    "pages/statistics/statistics",
+    "pages/team/team",
+    "pages/profile/profile",
+    "pages/paper-add/paper-add",
+    "pages/paper-detail/paper-detail",
+    "pages/paper-edit/paper-edit",
+    "pages/activity/activity",
+    "pages/team-create/team-create",
+    "pages/team-join/team-join"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "PaperTrack",
+    "navigationBarBackgroundColor": "#F6F7F9",
+    "backgroundColor": "#F6F7F9",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#98A1B0",
+    "selectedColor": "#3563A6",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "论文",
+        "iconPath": "assets/tabbar/paper.png",
+        "selectedIconPath": "assets/tabbar/paper-active.png"
+      },
+      {
+        "pagePath": "pages/statistics/statistics",
+        "text": "统计",
+        "iconPath": "assets/tabbar/chart.png",
+        "selectedIconPath": "assets/tabbar/chart-active.png"
+      },
+      {
+        "pagePath": "pages/team/team",
+        "text": "团队",
+        "iconPath": "assets/tabbar/team.png",
+        "selectedIconPath": "assets/tabbar/team-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/tabbar/profile.png",
+        "selectedIconPath": "assets/tabbar/profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

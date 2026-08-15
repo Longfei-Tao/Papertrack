@@ -1,0 +1,40 @@
+<view class="paper-card" hover-class="pressed" bindtap="onTap">
+  <view class="rail" style="background: {{paper.statusColor}};"></view>
+  <view class="content">
+    <view class="title-row">
+      <text class="title pt-ellipsis-2">{{paper.title}}</text>
+      <status-tag category="{{paper.statusCategory}}" />
+    </view>
+
+    <view wx:if="{{paper.journal}}" class="journal pt-ellipsis">{{paper.journal}}</view>
+
+    <view wx:if="{{paper.hasQuartile}}" class="chips">
+      <text wx:if="{{paper.casText}}" class="chip">{{paper.casText}}</text>
+      <text wx:if="{{paper.jcrText}}" class="chip">{{paper.jcrText}}</text>
+    </view>
+
+    <view class="meta">
+      <text class="meta-label">第一作者</text>
+      <text class="meta-value">{{paper.firstAuthorText || '—'}}</text>
+    </view>
+    <view class="meta">
+      <text class="meta-label">通讯作者</text>
+      <text class="meta-value">{{paper.correspondingAuthorText || '—'}}</text>
+    </view>
+    <view class="meta">
+      <text class="meta-label">负责人</text>
+      <text class="meta-value">{{paper.ownerText || '—'}}</text>
+    </view>
+
+    <view class="foot">
+      <view wx:if="{{paper.currentStatus}}" class="status-raw pt-ellipsis">
+        <text class="status-raw-label">当前状态</text>
+        <text class="status-raw-value">{{paper.currentStatus}}</text>
+      </view>
+      <view class="foot-right">
+        <view wx:if="{{paper.hasDeadline}}" class="deadline {{paper.deadlineUrgent ? 'urgent' : ''}}">距返修截止还有 {{paper.revisionDays}} 天</view>
+        <view class="time">{{paper.updatedAtText}}</view>
+      </view>
+    </view>
+  </view>
+</view>

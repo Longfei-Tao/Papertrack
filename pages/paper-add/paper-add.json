@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "添加论文",
+  "usingComponents": {
+    "paper-form": "../../components/paper-form/paper-form"
+  }
+}

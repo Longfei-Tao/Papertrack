@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="card">
+    <view class="block">
+      <view class="label required">课题组名称</view>
+      <input class="input" value="{{name}}" placeholder="如：厦门大学 XXX 课题组" placeholder-class="ph" data-field="name" bindinput="onInput" maxlength="50" />
+    </view>
+    <view class="block">
+      <view class="label">负责人</view>
+      <view class="value">{{ownerName}}（您，创建后自动成为管理员）</view>
+    </view>
+    <view class="block">
+      <view class="label">所属单位</view>
+      <input class="input" value="{{organization}}" placeholder="可选" placeholder-class="ph" data-field="organization" bindinput="onInput" maxlength="50" />
+    </view>
+    <view class="block no-border">
+      <view class="label">简介</view>
+      <input class="input" value="{{description}}" placeholder="可选" placeholder-class="ph" data-field="description" bindinput="onInput" maxlength="100" />
+    </view>
+  </view>
+
+  <button class="pt-btn pt-btn-primary pt-btn-block" bindtap="onSubmit">创建课题组</button>
+  <view class="hint">创建后将生成邀请码，可发送给课题组成员加入</view>
+</view>

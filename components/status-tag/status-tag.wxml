@@ -1,0 +1,5 @@
+<view class="status-tag" style="background: {{bg}}; color: {{color}};">
+  <view class="dot" style="background: {{color}};"></view>
+  <text class="label">{{label}}</text>
+  <text wx:if="{{showStatus && status}}" class="raw">{{status}}</text>
+</view>

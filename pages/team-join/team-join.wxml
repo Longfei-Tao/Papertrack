@@ -1,0 +1,17 @@
+<view class="page">
+  <view class="search">
+    <input class="code-input" value="{{code}}" placeholder="请输入邀请码，如 PT8K26" placeholder-class="ph" bindinput="onInput" maxlength="8" />
+    <button class="pt-btn pt-btn-primary pt-btn-mini search-btn" bindtap="onSearch">查询</button>
+  </view>
+
+  <view wx:if="{{team}}" class="card">
+    <view class="q">是否加入「{{team.name}}」？</view>
+    <view class="row"><text class="k">负责人</text><text class="v">{{ownerName}}</text></view>
+    <view wx:if="{{team.organization}}" class="row"><text class="k">所属单位</text><text class="v">{{team.organization}}</text></view>
+    <view class="row"><text class="k">成员数量</text><text class="v">{{memberCount}} 人</text></view>
+    <view class="row no-border"><text class="k">加入角色</text><text class="v">{{roleText}}</text></view>
+  </view>
+
+  <button wx:if="{{team}}" class="pt-btn pt-btn-primary pt-btn-block join-btn" bindtap="onJoin">确认加入</button>
+  <view class="hint">加入后即可查看该课题组的论文投稿进度</view>
+</view>

@@ -1,0 +1,44 @@
+<view class="page" wx:if="{{team}}">
+  <!-- 团队信息 -->
+  <view class="team-card">
+    <view class="team-name">{{team.name}}</view>
+    <view class="team-meta">{{team.organization || '未填写单位'}} · {{memberCount}} 名成员</view>
+    <view class="invite">
+      <text class="invite-label">邀请码</text>
+      <text class="invite-code">{{team.inviteCode}}</text>
+      <text class="invite-copy" bindtap="onCopyInviteCode">复制</text>
+    </view>
+    <view wx:if="{{team.description}}" class="team-desc">{{team.description}}</view>
+    <view wx:if="{{isAdmin}}" class="refresh" bindtap="onRefreshInviteCode">刷新邀请码</view>
+  </view>
+
+  <!-- 成员列表 -->
+  <view class="section">
+    <view class="section-title">成员（{{memberCount}}）</view>
+    <view wx:for="{{members}}" wx:key="userId" class="member-item">
+      <member-avatar name="{{item.nickname}}" size="{{72}}" />
+      <view class="member-info">
+        <view class="member-name">{{item.nickname}}{{item.isMe ? '（我）' : ''}}</view>
+        <view class="member-role">{{item.roleLabel}}</view>
+      </view>
+      <view wx:if="{{isAdmin && !item.isMe && !item.isOwner}}" class="member-actions">
+        <text class="action" data-id="{{item.userId}}" data-name="{{item.nickname}}" bindtap="onChangeRole">改角色</text>
+        <text class="action danger" data-id="{{item.userId}}" data-name="{{item.nickname}}" bindtap="onRemoveMember">移除</text>
+      </view>
+      <view wx:elif="{{item.isOwner}}" class="owner-tag">负责人</view>
+    </view>
+  </view>
+
+  <!-- 我的课题组（切换） -->
+  <view class="section">
+    <view class="section-title">我的课题组</view>
+    <view wx:for="{{myTeams}}" wx:key="teamId" class="team-item {{item.current ? 'current' : ''}}" hover-class="pt-hover" data-id="{{item.teamId}}" bindtap="onSwitchTeam">
+      <view class="team-item-info">
+        <view class="team-item-name">{{item.teamName}}</view>
+        <view class="team-item-role">{{item.roleLabel}}</view>
+      </view>
+      <text wx:if="{{item.current}}" class="current-tag">当前</text>
+      <view wx:else class="arrow"></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,64 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 40rpx;
+}
+.illus {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  background: #EDF2FA;
+  margin-bottom: 32rpx;
+}
+.sheet {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 96rpx;
+  height: 120rpx;
+  transform: translate(-50%, -50%);
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  box-shadow: 0 4rpx 16rpx rgba(53, 99, 166, 0.12);
+  padding: 20rpx 16rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.line {
+  height: 8rpx;
+  border-radius: 4rpx;
+  background: #EAEDF1;
+}
+.line.l1 { width: 100%; background: #3563A6; }
+.line.l2 { width: 80%; }
+.line.l3 { width: 55%; }
+.node {
+  position: absolute;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: #3563A6;
+}
+.node.n1 { right: 24rpx; top: 52rpx; }
+.node.n2 { right: 44rpx; top: 100rpx; background: #4A7BB8; }
+.node.n3 { right: 30rpx; top: 148rpx; background: #C0C8D8; }
+.title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1B2233;
+}
+.desc {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: #98A1B0;
+  text-align: center;
+  max-width: 480rpx;
+  line-height: 1.6;
+}
+.action {
+  margin-top: 32rpx;
+}

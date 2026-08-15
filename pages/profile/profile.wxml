@@ -1,0 +1,32 @@
+<view class="page" wx:if="{{user}}">
+  <!-- 个人信息 -->
+  <view class="profile-card">
+    <member-avatar name="{{user.nickname}}" size="{{120}}" />
+    <view class="nickname">{{user.nickname}}</view>
+    <view class="team-line">{{teamName}} · {{roleLabel}}</view>
+  </view>
+
+  <!-- 我的论文数 -->
+  <view class="stat-card">
+    <view class="num">{{myPaperCount}}</view>
+    <view class="label">我的论文</view>
+  </view>
+
+  <!-- 菜单 -->
+  <view class="menu">
+    <view class="menu-item" hover-class="pt-hover" bindtap="onSwitchTeam">
+      <text>切换课题组</text>
+      <view class="arrow"></view>
+    </view>
+    <view class="menu-item" hover-class="pt-hover" bindtap="onAbout">
+      <text>关于 PaperTrack</text>
+      <view class="arrow"></view>
+    </view>
+    <view class="menu-item" hover-class="pt-hover" bindtap="onReset">
+      <text>重置演示数据</text>
+      <view class="arrow"></view>
+    </view>
+  </view>
+
+  <view class="version">PaperTrack 版本 {{version}}</view>
+</view>

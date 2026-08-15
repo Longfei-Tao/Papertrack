@@ -1,0 +1,222 @@
+/* ============================================================
+   PaperTrack 设计系统 —— 全局样式
+   学术 · 专业 · 冷静 · 简洁 · 可信赖
+   配色：低饱和学术蓝，克制、不刺眼
+   ============================================================ */
+
+page {
+  /* 颜色令牌 */
+  --pt-primary: #3563A6;        /* 主色：学术蓝 */
+  --pt-primary-deep: #27497F;   /* 主色深：文字链接/强调 */
+  --pt-primary-soft: #EDF2FA;   /* 主色浅：标签底/选中态 */
+  --pt-bg: #F6F7F9;             /* 页面背景 */
+  --pt-surface: #FFFFFF;        /* 卡片/面板 */
+  --pt-text-1: #1B2233;         /* 主文本 */
+  --pt-text-2: #667080;         /* 次文本 */
+  --pt-text-3: #98A1B0;         /* 弱文本/占位 */
+  --pt-border: #EAEDF1;         /* 边框 */
+  --pt-divider: #F0F2F5;        /* 分割线 */
+  --pt-danger: #B5584E;         /* 危险/删除（暗红） */
+  --pt-warning: #C08A3E;        /* 提醒（赭黄） */
+  --pt-success: #3F8E5F;        /* 成功（绿） */
+
+  /* 字号令牌 */
+  --pt-fs-xl: 40rpx;  /* 页面大标题 */
+  --pt-fs-lg: 34rpx;  /* 卡片标题 */
+  --pt-fs-md: 30rpx;  /* 正文 */
+  --pt-fs-sm: 26rpx;  /* 辅助 */
+  --pt-fs-xs: 22rpx;  /* 标签/小字 */
+
+  /* 圆角 */
+  --pt-radius-card: 16rpx;
+  --pt-radius-sm: 12rpx;
+  --pt-radius-tag: 8rpx;
+
+  /* 阴影（极轻） */
+  --pt-shadow: 0 2rpx 12rpx rgba(27, 34, 51, 0.05);
+
+  background: var(--pt-bg);
+  color: var(--pt-text-1);
+  font-size: var(--pt-fs-md);
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+}
+
+/* ---------- 文本层级 ---------- */
+.pt-t1 { color: var(--pt-text-1); }
+.pt-t2 { color: var(--pt-text-2); }
+.pt-t3 { color: var(--pt-text-3); }
+.pt-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.pt-ellipsis-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ---------- 卡片 ---------- */
+.pt-card {
+  background: var(--pt-surface);
+  border-radius: var(--pt-radius-card);
+  box-shadow: var(--pt-shadow);
+  padding: 28rpx;
+  box-sizing: border-box;
+}
+
+/* ---------- 按钮 ---------- */
+.pt-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--pt-radius-sm);
+  font-size: var(--pt-fs-md);
+  line-height: 1;
+  height: 88rpx;
+  padding: 0 32rpx;
+  box-sizing: border-box;
+  font-weight: 500;
+}
+.pt-btn::after { border: none; }
+
+.pt-btn-primary {
+  background: var(--pt-primary);
+  color: #FFFFFF;
+}
+.pt-btn-primary:active { background: var(--pt-primary-deep); }
+
+.pt-btn-ghost {
+  background: #FFFFFF;
+  color: var(--pt-primary);
+  border: 1rpx solid var(--pt-primary);
+}
+.pt-btn-ghost:active { background: var(--pt-primary-soft); }
+
+.pt-btn-danger {
+  background: #FFFFFF;
+  color: var(--pt-danger);
+  border: 1rpx solid var(--pt-danger);
+}
+.pt-btn-danger:active { background: #FBF1F0; }
+
+.pt-btn-block { width: 100%; }
+
+.pt-btn-mini {
+  height: 64rpx;
+  font-size: var(--pt-fs-sm);
+  padding: 0 24rpx;
+  border-radius: 10rpx;
+}
+
+/* ---------- 表单 ---------- */
+.pt-form-section {
+  background: var(--pt-surface);
+  border-radius: var(--pt-radius-card);
+  box-shadow: var(--pt-shadow);
+  margin-bottom: 24rpx;
+  overflow: hidden;
+}
+.pt-form-section-title {
+  padding: 28rpx 28rpx 0;
+  font-size: var(--pt-fs-sm);
+  color: var(--pt-text-3);
+  font-weight: 500;
+}
+.pt-form-row {
+  display: flex;
+  align-items: center;
+  padding: 26rpx 28rpx;
+  border-bottom: 1rpx solid var(--pt-divider);
+  min-height: 60rpx;
+}
+.pt-form-row:last-child { border-bottom: none; }
+.pt-form-label {
+  width: 176rpx;
+  flex-shrink: 0;
+  color: var(--pt-text-1);
+  font-size: var(--pt-fs-md);
+}
+.pt-form-label.required::after {
+  content: ' *';
+  color: var(--pt-danger);
+}
+.pt-form-value {
+  flex: 1;
+  color: var(--pt-text-1);
+  font-size: var(--pt-fs-md);
+  text-align: right;
+}
+.pt-form-value.placeholder { color: var(--pt-text-3); }
+.pt-input {
+  flex: 1;
+  font-size: var(--pt-fs-md);
+  color: var(--pt-text-1);
+  text-align: right;
+  min-height: 40rpx;
+}
+.pt-input.pt-input-left { text-align: left; }
+.pt-textarea {
+  width: 100%;
+  min-height: 160rpx;
+  padding: 24rpx 28rpx;
+  box-sizing: border-box;
+  font-size: var(--pt-fs-md);
+  color: var(--pt-text-1);
+  line-height: 1.6;
+}
+.pt-arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 2rpx solid var(--pt-text-3);
+  border-right: 2rpx solid var(--pt-text-3);
+  transform: rotate(45deg);
+  margin-left: 12rpx;
+  flex-shrink: 0;
+}
+
+/* ---------- 通用小标签 ---------- */
+.pt-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 24rpx;
+  min-height: 60rpx;
+  border-radius: 999rpx;
+  font-size: var(--pt-fs-sm);
+  background: var(--pt-bg);
+  color: var(--pt-text-2);
+}
+.pt-chip.active {
+  background: var(--pt-primary-soft);
+  color: var(--pt-primary);
+  font-weight: 500;
+}
+
+/* 按压反馈（配合 hover-class 使用） */
+.pt-hover {
+  opacity: 0.72;
+}
+
+/* ---------- 布局工具 ---------- */
+.pt-flex { display: flex; align-items: center; }
+.pt-flex-between { display: flex; align-items: center; justify-content: space-between; }
+.pt-flex-col { display: flex; flex-direction: column; }
+.pt-grow { flex: 1; min-width: 0; }
+
+/* 页面通用容器 */
+.pt-page {
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+/* 底部安全区 */
+.pt-safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* 空状态 & 通用提示 */
+.pt-hint {
+  font-size: var(--pt-fs-sm);
+  color: var(--pt-text-3);
+  text-align: center;
+}

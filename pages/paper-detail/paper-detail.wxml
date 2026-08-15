@@ -1,0 +1,45 @@
+<view class="page" wx:if="{{paper}}">
+  <!-- 标题与状态 -->
+  <view class="head">
+    <view class="title">{{paper.title}}</view>
+    <view class="head-row">
+      <status-tag category="{{paper.statusCategory}}" />
+      <text wx:if="{{paper.currentStatus}}" class="raw-status">{{paper.currentStatus}}</text>
+    </view>
+    <view wx:if="{{deadlineHint}}" class="deadline-hint">{{deadlineHint}}</view>
+  </view>
+
+  <!-- 论文信息 -->
+  <view class="section">
+    <view class="section-title">论文信息</view>
+    <view class="row"><text class="k">投稿期刊</text><text class="v">{{paper.journal || '—'}}</text></view>
+    <view wx:if="{{paper.articleType}}" class="row"><text class="k">论文类型</text><text class="v">{{paper.articleType}}</text></view>
+    <view class="row"><text class="k">中科院分区</text><text class="v">{{paper.casQuartile || '暂未填写'}}</text></view>
+    <view class="row"><text class="k">JCR 分区</text><text class="v">{{paper.jcrQuartile || '暂未填写'}}</text></view>
+    <view class="row"><text class="k">第一作者</text><text class="v">{{paper.firstAuthorText || '—'}}</text></view>
+    <view class="row"><text class="k">通讯作者</text><text class="v">{{paper.correspondingAuthorText || '—'}}</text></view>
+    <view class="row"><text class="k">负责人</text><text class="v">{{paper.ownerText || '—'}}</text></view>
+    <view wx:if="{{submissionDateText}}" class="row"><text class="k">投稿日期</text><text class="v">{{submissionDateText}}</text></view>
+    <view wx:if="{{paper.manuscriptId}}" class="row"><text class="k">稿件编号</text><text class="v">{{paper.manuscriptId}}</text></view>
+    <view wx:if="{{paper.doi}}" class="row"><text class="k">DOI</text><text class="v">{{paper.doi}}</text></view>
+    <view wx:if="{{revisionDeadlineText}}" class="row"><text class="k">返修截止日期</text><text class="v">{{revisionDeadlineText}}</text></view>
+    <view class="row no-border"><text class="k">最后更新时间</text><text class="v">{{updatedAtText}}</text></view>
+    <view wx:if="{{paper.note}}" class="note">
+      <view class="note-label">备注</view>
+      <view class="note-text">{{paper.note}}</view>
+    </view>
+  </view>
+
+  <!-- 投稿进度 -->
+  <view class="section">
+    <view class="section-title">投稿进度</view>
+    <timeline wx:if="{{history.length}}" items="{{history}}" />
+    <view wx:else class="no-history">暂无状态记录</view>
+  </view>
+
+  <!-- 操作 -->
+  <view class="actions">
+    <button wx:if="{{canEdit}}" class="pt-btn pt-btn-primary pt-btn-block" bindtap="onEdit">编辑论文</button>
+    <button wx:if="{{canEdit}}" class="pt-btn pt-btn-danger pt-btn-block delete" bindtap="onDelete">删除论文</button>
+  </view>
+</view>

@@ -1,0 +1,37 @@
+# 微信开发者工具
+project.private.config.json
+/miniprogram_npm
+
+# 依赖与缓存
+node_modules/
+package-lock.json
+*.log
+npm-debug.log*
+
+# 环境变量与密钥（禁止提交）
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials.json
+secrets*
+
+# 编译产物
+/dist/
+/build/
+*.min.js
+*.min.wxss
+unpackage/
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 临时文件（开发/测试用）
+_tmp/
+*.tmp

@@ -1,0 +1,1 @@
+<paper-form wx:if="{{paper}}" initial="{{paper}}" members="{{members}}" submitText="保存" bind:submit="onSubmit" />

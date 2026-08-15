@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "团队",
+  "usingComponents": {
+    "member-avatar": "../../components/member-avatar/member-avatar"
+  }
+}

@@ -1,0 +1,1 @@
+<paper-form members="{{members}}" submitText="添加论文" bind:submit="onSubmit" />

@@ -1,0 +1,245 @@
+.page {
+  padding: 24rpx 24rpx 0;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 顶部团队信息 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8rpx 8rpx 24rpx;
+}
+.team-name-row {
+  display: flex;
+  align-items: center;
+}
+.team-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1B2233;
+}
+.switch-hint {
+  margin-left: 16rpx;
+  font-size: 24rpx;
+  color: #3563A6;
+}
+.team-meta {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: #98A1B0;
+}
+.role-badge {
+  font-size: 22rpx;
+  color: #3563A6;
+  background: #EDF2FA;
+  padding: 6rpx 20rpx;
+  border-radius: 999rpx;
+  flex-shrink: 0;
+}
+
+/* 我的/全部切换 */
+.seg {
+  display: flex;
+  background: #EAEDF1;
+  border-radius: 12rpx;
+  padding: 4rpx;
+  margin-bottom: 20rpx;
+}
+.seg-item {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #667080;
+  padding: 12rpx 0;
+  border-radius: 10rpx;
+}
+.seg-item.active {
+  background: #FFFFFF;
+  color: #3563A6;
+  font-weight: 500;
+}
+
+/* 概览统计 */
+.stat-grid {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+}
+.stat-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 最近动态 */
+.activity-card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(27, 34, 51, 0.05);
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+.activity-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+.activity-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1B2233;
+}
+.activity-more {
+  font-size: 24rpx;
+  color: #3563A6;
+}
+.activity-item {
+  display: flex;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #F0F2F5;
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-body {
+  flex: 1;
+  min-width: 0;
+  margin-left: 16rpx;
+}
+.activity-line1 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.activity-user {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #1B2233;
+  margin-right: 12rpx;
+}
+.activity-action {
+  font-size: 24rpx;
+  color: #3563A6;
+}
+.activity-paper {
+  margin-top: 6rpx;
+  font-size: 26rpx;
+  color: #667080;
+}
+.activity-time {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #98A1B0;
+}
+.activity-empty {
+  padding: 24rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #98A1B0;
+}
+
+/* 搜索 */
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 12rpx rgba(27, 34, 51, 0.05);
+  padding: 0 24rpx;
+  height: 80rpx;
+  margin-bottom: 20rpx;
+}
+.search-icon {
+  width: 24rpx;
+  height: 24rpx;
+  border: 3rpx solid #98A1B0;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+.search-icon::after {
+  content: '';
+  position: absolute;
+  width: 3rpx;
+  height: 12rpx;
+  background: #98A1B0;
+  transform: rotate(-45deg);
+  right: -7rpx;
+  bottom: -7rpx;
+}
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1B2233;
+  height: 100%;
+}
+.ph { color: #98A1B0; }
+.search-clear {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 36rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: #EAEDF1;
+  color: #667080;
+  font-size: 28rpx;
+  margin-left: 12rpx;
+  flex-shrink: 0;
+}
+
+/* 筛选 chips */
+.filter-scroll {
+  margin-bottom: 8rpx;
+  white-space: nowrap;
+}
+.filter-row {
+  display: inline-flex;
+  padding: 8rpx 0;
+}
+.filter-row .pt-chip {
+  margin-right: 16rpx;
+}
+
+/* 列表 */
+.list {
+  margin-top: 16rpx;
+}
+.list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8rpx 16rpx;
+}
+.list-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1B2233;
+}
+.list-count {
+  font-size: 24rpx;
+  color: #98A1B0;
+}
+
+/* 添加论文 FAB */
+.fab {
+  position: fixed;
+  right: 32rpx;
+  bottom: 48rpx;
+  display: flex;
+  align-items: center;
+  background: #3563A6;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  font-weight: 500;
+  padding: 20rpx 36rpx;
+  border-radius: 999rpx;
+  box-shadow: 0 8rpx 24rpx rgba(53, 99, 166, 0.32);
+}
+.fab-plus {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+  line-height: 1;
+}
+.fab-space {
+  height: 120rpx;
+}

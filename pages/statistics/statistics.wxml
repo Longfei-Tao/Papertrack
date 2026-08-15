@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="page-title">{{teamName}}</view>
+
+  <!-- 数字卡片 -->
+  <view class="stat-grid">
+    <view wx:for="{{statCards}}" wx:key="label" class="stat-cell">
+      <stat-card value="{{item.value}}" label="{{item.label}}" />
+    </view>
+  </view>
+
+  <!-- 状态分布 -->
+  <view class="section">
+    <view class="section-title">状态分布</view>
+    <view wx:for="{{statusBars}}" wx:key="key" class="bar-row">
+      <view class="bar-label">
+        <view class="dot" style="background: {{item.color}};"></view>
+        <text>{{item.label}}</text>
+      </view>
+      <view class="bar-track">
+        <view class="bar-fill" style="width: {{item.percent}}%; background: {{item.color}};"></view>
+      </view>
+      <text class="bar-count">{{item.count}}</text>
+    </view>
+    <view wx:if="{{!statusBars.length}}" class="empty">暂无数据</view>
+  </view>
+
+  <!-- 成员论文分布 -->
+  <view class="section">
+    <view class="section-title">成员论文分布</view>
+    <view wx:for="{{memberBars}}" wx:key="name" class="bar-row">
+      <view class="bar-label name">{{item.name}}</view>
+      <view class="bar-track">
+        <view class="bar-fill member" style="width: {{item.percent}}%;"></view>
+      </view>
+      <text class="bar-count">{{item.count}}</text>
+    </view>
+    <view wx:if="{{!memberBars.length}}" class="empty">暂无数据</view>
+  </view>
+</view>
