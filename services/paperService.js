@@ -33,6 +33,17 @@ function decoratePaper(paper) {
   const casText = casQuartile && casQuartile !== '暂未填写' ? `中科院${casQuartile}` : ''
   const jcrText = jcrQuartile && jcrQuartile !== '暂未填写' ? `JCR ${jcrQuartile}` : ''
   const revisionDays = date.daysUntil(paper.revisionDeadline)
+  // 返修截止文案：过去日期不再显示 "-3 天"，而是"已逾期 3 天"
+  let deadlineText = ''
+  let deadlineOverdue = false
+  if (revisionDays !== null && revisionDays !== undefined) {
+    if (revisionDays < 0) {
+      deadlineOverdue = true
+      deadlineText = `已逾期 ${Math.abs(revisionDays)} 天`
+    } else {
+      deadlineText = `距返修截止还有 ${revisionDays} 天`
+    }
+  }
   return Object.assign({}, paper, {
     firstAuthorText: (paper.firstAuthors || []).join('、'),
     correspondingAuthorText: (paper.correspondingAuthors || []).join('、'),
@@ -45,7 +56,9 @@ function decoratePaper(paper) {
     hasQuartile: !!(casText || jcrText),
     revisionDays,
     hasDeadline: revisionDays !== null && revisionDays !== undefined,
-    deadlineUrgent: revisionDays !== null && revisionDays !== undefined && revisionDays <= 7,
+    deadlineText,
+    deadlineOverdue,
+    deadlineUrgent: revisionDays !== null && revisionDays !== undefined && revisionDays >= 0 && revisionDays <= 7,
   })
 }
 

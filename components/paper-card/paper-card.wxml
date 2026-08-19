@@ -32,7 +32,7 @@
         <text class="status-raw-value">{{paper.currentStatus}}</text>
       </view>
       <view class="foot-right">
-        <view wx:if="{{paper.hasDeadline}}" class="deadline {{paper.deadlineUrgent ? 'urgent' : ''}}">距返修截止还有 {{paper.revisionDays}} 天</view>
+        <view wx:if="{{paper.hasDeadline}}" class="deadline {{paper.deadlineUrgent || paper.deadlineOverdue ? 'urgent' : ''}}">{{paper.deadlineText}}</view>
         <view class="time">{{paper.updatedAtText}}</view>
       </view>
     </view>

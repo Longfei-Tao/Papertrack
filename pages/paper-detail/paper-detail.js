@@ -36,7 +36,6 @@ Page({
     const userId = userService.getCurrentUserId()
     const canEdit = permission.canEditPaper(role, userId, paper)
     const history = paperService.getStatusHistory(this.id)
-    const revisionDays = paper.revisionDays
     this.setData({
       paper,
       history,
@@ -44,7 +43,7 @@ Page({
       submissionDateText: date.formatDateOnly(paper.submissionDate),
       revisionDeadlineText: date.formatDateOnly(paper.revisionDeadline),
       updatedAtText: date.formatFull(paper.updatedAt),
-      deadlineHint: (revisionDays !== null && revisionDays !== undefined) ? `距返修截止还有 ${revisionDays} 天` : '',
+      deadlineHint: paper.deadlineText || '',
     })
   },
 
