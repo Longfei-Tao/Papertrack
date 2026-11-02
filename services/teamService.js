@@ -124,7 +124,15 @@ function joinTeam(inviteCode) {
 }
 
 // 修改成员角色
+function requireAdmin(teamId) {
+  if (getRoleInTeam(teamId, userService.getCurrentUserId()) !== 'admin') {
+    throw new Error('没有管理该团队的权限')
+  }
+}
+
 function updateMemberRole(teamId, userId, role) {
+  requireAdmin(teamId)
+  if (!['admin', 'member', 'viewer'].includes(role)) throw new Error('无效的成员角色')
   const members = storage.getCollection('members')
   const m = members.find((x) => x.teamId === teamId && x.userId === userId)
   if (!m) return false
@@ -135,12 +143,14 @@ function updateMemberRole(teamId, userId, role) {
 
 // 移除成员
 function removeMember(teamId, userId) {
+  requireAdmin(teamId)
   const members = storage.getCollection('members').filter((x) => !(x.teamId === teamId && x.userId === userId))
   storage.saveCollection('members', members)
 }
 
 // 刷新邀请码
 function refreshInviteCode(teamId) {
+  requireAdmin(teamId)
   const teams = storage.getCollection('teams')
   const t = teams.find((x) => x.id === teamId)
   if (!t) return ''

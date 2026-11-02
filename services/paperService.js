@@ -13,6 +13,16 @@ const constants = require('../utils/constants')
 const date = require('../utils/date')
 const { genId } = require('../utils/id')
 
+function requireWriteAccess(teamId, paper) {
+  const userId = userService.getCurrentUserId()
+  const membership = storage.getCollection('members').find((m) => m.teamId === teamId && m.userId === userId)
+  const role = membership && membership.role
+  if (teamId !== storage.getMeta('currentTeamId') ||
+      (paper ? !permission.canEditPaper(role, userId, paper) || paper.deletedAt : !['admin', 'member'].includes(role))) {
+    throw new Error('没有操作该论文的权限')
+  }
+}
+
 function normalize(v) {
   return v === undefined || v === null ? '' : v
 }
@@ -66,8 +76,10 @@ function decoratePaper(paper) {
 // opts: { teamId, userId, role, scope('mine'|'all'), query, statusCategory, ownerId }
 function queryPapers(opts) {
   const teamId = opts.teamId
-  const role = opts.role
-  const userId = opts.userId
+  const userId = userService.getCurrentUserId()
+  const membership = storage.getCollection('members').find((m) => m.teamId === teamId && m.userId === userId)
+  if (!membership) return []
+  const role = membership.role
   const scope = opts.scope || (role === 'admin' ? 'all' : 'mine')
 
   let list = storage.getCollection('papers').filter((p) => p.teamId === teamId && !p.deletedAt)
@@ -109,7 +121,11 @@ function queryPapers(opts) {
 }
 
 function getRawPaper(paperId) {
-  return storage.getCollection('papers').find((p) => p.id === paperId) || null
+  const paper = storage.getCollection('papers').find((p) => p.id === paperId)
+  if (!paper || paper.deletedAt || paper.teamId !== storage.getMeta('currentTeamId')) return null
+  const userId = userService.getCurrentUserId()
+  const member = storage.getCollection('members').find((m) => m.teamId === paper.teamId && m.userId === userId)
+  return member && permission.canViewPaper(member.role, userId, paper) ? paper : null
 }
 
 function getPaper(paperId) {
@@ -120,6 +136,7 @@ function getPaper(paperId) {
 // 创建论文
 function createPaper(data) {
   const teamId = data.teamId || storage.getMeta('currentTeamId')
+  requireWriteAccess(teamId)
   const operatorId = storage.getMeta('currentUserId')
   const now = Date.now()
   const id = genId('paper')
@@ -176,6 +193,7 @@ function updatePaper(paperId, newData) {
   const idx = papers.findIndex((p) => p.id === paperId)
   if (idx < 0) return { changed: false, paper: null }
   const old = papers[idx]
+  requireWriteAccess(old.teamId, old)
 
   // 逐字段比较，判断是否有真实变化
   const scalarFields = ['title', 'journal', 'articleType', 'casQuartile', 'jcrQuartile',
@@ -257,6 +275,7 @@ function softDeletePaper(paperId) {
   const idx = papers.findIndex((p) => p.id === paperId)
   if (idx < 0) return false
   const old = papers[idx]
+  requireWriteAccess(old.teamId, old)
   papers[idx] = Object.assign({}, old, { deletedAt: Date.now(), updatedAt: Date.now() })
   storage.saveCollection('papers', papers)
 
@@ -270,6 +289,7 @@ function softDeletePaper(paperId) {
 
 // 状态历史（升序），补全日期与操作人
 function getStatusHistory(paperId) {
+  if (!getRawPaper(paperId)) return []
   return storage.getCollection('statusHistory')
     .filter((h) => h.paperId === paperId)
     .sort((a, b) => a.createdAt - b.createdAt)
